@@ -1,4 +1,4 @@
-# Convox Example: Sinatra
+# Convox: Sinatra
 
 This application includes:
 
