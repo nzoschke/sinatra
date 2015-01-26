@@ -9,9 +9,6 @@ RUN chown -R app:app /app
 
 WORKDIR /app
 
-EXPOSE 5000
-ENV PORT 5000
-
 ENV PATH /home/app/.gem/bin:$PATH
 ENV GEM_HOME /home/app/.gem
 RUN sudo -Eu app gem install bundler
