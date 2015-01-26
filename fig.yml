@@ -20,6 +20,6 @@ worker:
     - postgres
     - redis
 redis:
-  image: redis:2.8.19
+  image: convox/redis
 postgres:
   image: convox/postgres
