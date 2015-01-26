@@ -1,7 +1,5 @@
 FROM ruby:2.2.0
 
-RUN /sdfjksdkfj
-
 EXPOSE 3000
 RUN apt-get update
 RUN apt-get -y install nginx
