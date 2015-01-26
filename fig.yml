@@ -3,9 +3,10 @@ web:
   environment:
     - RACK_ENV=development
   ports:
-    - 5000:5000
+    - 3000:3000
   volumes:
     - web:/app
+    - web/conf/nginx.conf:/etc/nginx/nginx.conf
   links:
     - postgres
     - redis

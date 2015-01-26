@@ -5,7 +5,10 @@ root=$(dirname $(dirname $0))
 export POSTGRES_URL=postgres://${POSTGRES_ENV_POSTGRES_USER}:${POSTGRES_ENV_POSTGRES_PASSWORD}@${POSTGRES_PORT_5432_TCP_ADDR}:${POSTGRES_PORT_5432_TCP_PORT}/${POSTGRES_ENV_POSTGRES_DATABASE}
 export REDIS_URL=redis://${REDIS_PORT_6379_TCP_ADDR}:${REDIS_PORT_6379_TCP_PORT}/0
 
-# wait for database
+echo "starting nginx"
+/etc/init.d/nginx start
+
+echo "waiting for database"
 while true; do sequel -c 'DB.inspect' $POSTGRES_URL 2>/dev/null && break || sleep 1; done
 
 unicorn -c $root/unicorn.rb
