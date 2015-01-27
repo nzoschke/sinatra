@@ -13,6 +13,8 @@ class Web < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  set :erb, :escape_html => true
+
   get "/" do
     erb :index, :locals => { :messages => QueueTable.order(:created_at).all }
   end
