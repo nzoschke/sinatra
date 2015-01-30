@@ -1,26 +1,14 @@
 FROM ruby:2.2.0
 
-RUN apt-get update
-RUN apt-get -y install sudo
-
-RUN useradd -ms /bin/bash app
-RUN mkdir -p /app
-RUN chown -R app:app /app
-
-WORKDIR /app
-
-ENV PATH /home/app/.gem/bin:$PATH
-ENV GEM_HOME /home/app/.gem
-RUN sudo -Eu app gem install bundler
-ADD Gemfile /app/Gemfile
-ADD Gemfile.lock /app/Gemfile.lock
-RUN sudo -Eu app /home/app/.gem/bin/bundle install
+ENV GEM_HOME /var/lib/gem
+ENV PATH /var/lib/gem/bin:$PATH
+RUN gem install bundler
 
 ENV RACK_ENV production
-
+WORKDIR /app
+ADD Gemfile /app/Gemfile
+ADD Gemfile.lock /app/Gemfile.lock
+RUN bundle install
 COPY . /app
-RUN chown -R app:app /app
-RUN chown -R app:app /home/app
-USER app
 
 CMD ["bin/worker"]
