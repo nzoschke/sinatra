@@ -1,21 +1,22 @@
 web:
-  build: web
+  build: .
+  command: bin/web
   environment:
     - RACK_ENV=development
   ports:
     - 3000:3000
   volumes:
-    - web:/app
-    - web/conf/nginx.conf:/etc/nginx/nginx.conf
+    - .:/app
   links:
     - postgres
     - redis
 worker:
-  build: worker
+  build: .
+  command: bin/worker
   environment:
     - RACK_ENV=development
   volumes:
-    - worker:/app
+    - .:/app
   links:
     - postgres
     - redis
