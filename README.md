@@ -8,7 +8,7 @@ This application includes:
 
 ## Development
 
-    $ fig up
+    $ docker-compose up
    
 ## Production
 
