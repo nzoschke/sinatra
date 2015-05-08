@@ -19,6 +19,10 @@ class Web < Sinatra::Base
     erb :index, :locals => { :messages => QueueTable.order(:created_at).all }
   end
 
+  get "/check" do
+    "ok"
+  end
+
   post "/message" do
     RedisClient.lpush "queue", params["text"]
     redirect to("/")
